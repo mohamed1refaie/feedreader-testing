@@ -32,7 +32,7 @@ $(function() {
          * and that the URL is not empty.
          */
         it('every feed has a URL defined and not empty',function() {
-            for(feed of allFeeds){
+            for(feed of allFeeds) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).not.toBe("");
             }
@@ -44,7 +44,7 @@ $(function() {
          * and that the name is not empty.
          */
         it('every feed has a name defined and not empty',function() {
-            for(feed of allFeeds){
+            for(feed of allFeeds) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe("");
             }
@@ -88,7 +88,7 @@ $(function() {
          * a single .entry element within the .feed container.
          */
         beforeEach(function(done) {
-            loadFeed(0,function(){
+            loadFeed(0,function() {
                 done();
             });
         });
@@ -99,7 +99,6 @@ $(function() {
             done();
         });
     });
-    
 
     /*test suite named "New Feed Selection" */
     describe('New Feed Selection',function() {
@@ -109,7 +108,7 @@ $(function() {
          */
         let firstEntries,secondEntries;
         beforeEach(function(done) {
-            loadFeed(0,function(){
+            loadFeed(0,function() {
                 firstEntries=$('.feed').html();
                 loadFeed(1,done);
             });
@@ -121,10 +120,5 @@ $(function() {
             done();
         });
     });
-
-        
-
-
-
 
 }());

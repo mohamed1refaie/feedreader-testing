@@ -64,36 +64,74 @@ $(function() {
             bodyClassList=document.body.classList;
         });
 
-        it('the menu should be hidden by default',function(){
+        it('the menu should be hidden by default',function() {
             expect(bodyClassList[0]).toBe('menu-hidden');
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
+         /* test that ensures the menu changes
+          * visibility when the menu icon is clicked.
           */
-        it('the visibility changes when clicked',function(){
+        it('the visibility changes when clicked',function() {
             $('.menu-icon-link').trigger('click');
             expect(bodyClassList[0]).not.toBeDefined();
             $('.menu-icon-link').trigger('click');
             expect(bodyClassList[0]).toBe('menu-hidden');
-
         });
     });
-    /* TODO: Write a new test suite named "Initial Entries" */
 
-        /* TODO: Write a test that ensures when the loadFeed
+
+    /*test suite named "Initial Entries" */
+    describe('Initial Entries',function() {
+
+        /* test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        beforeEach(function(done) {
+            loadFeed(0,function(){
+                done();
+            });
+        });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+        it('should have at least single entry when loaded',function(done) {
+            let Entries=$('.feed').find('.entry');
+            expect(Entries.length).not.toBe(0);
+            done();
+        });
+    });
+    
+
+    /*test suite named "New Feed Selection" */
+    describe('New Feed Selection',function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let firstEntries,secondEntries;
+        beforeEach(function(done) {
+            loadFeed(0,function(){
+                done();
+            });
+            firstEntries=$('.feed').find('.entry');
+
+            loadFeed(1,function(){
+                done();
+            });
+            secondEntries=$('.feed').find('.entry');
+        });
+
+        it('the content should change when new feed is loaded',function(done) {
+            console.log(firstEntries);
+            console.log(secondEntries);
+            expect(firstEntries).not.toBe(secondEntries);
+            done();
+        });
+    });
+
+        
+
+
+
+
 }());

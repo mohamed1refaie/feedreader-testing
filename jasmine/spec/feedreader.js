@@ -104,26 +104,19 @@ $(function() {
     /*test suite named "New Feed Selection" */
     describe('New Feed Selection',function() {
 
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
          */
         let firstEntries,secondEntries;
         beforeEach(function(done) {
             loadFeed(0,function(){
-                done();
+                firstEntries=$('.feed').html();
+                loadFeed(1,done);
             });
-            firstEntries=$('.feed').find('.entry');
-
-            loadFeed(1,function(){
-                done();
-            });
-            secondEntries=$('.feed').find('.entry');
         });
 
         it('the content should change when new feed is loaded',function(done) {
-            console.log(firstEntries);
-            console.log(secondEntries);
+            secondEntries=$('.feed').html();
             expect(firstEntries).not.toBe(secondEntries);
             done();
         });
